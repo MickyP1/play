@@ -1,12 +1,9 @@
 
-const {firefox} = require ('playwright');
 const {test, expect } = require('@playwright/test');
 
-(async() => {
+test('Search Sky Glass', async({page}) => {
 
     //Got to sky.com
-    const browser = await firefox.launch({headless: false, slowMo:300});
-    const page = await browser.newPage();
     await page.goto('https://www.sky.com/');
 
     //Locate the cookies pop up iFrame and click the agree button
