@@ -2,10 +2,6 @@
 const {firefox} = require ('playwright');
 const {test, expect } = require('@playwright/test');
 
-
-
-
-
 (async() => {
 
     //Got to sky.com
@@ -14,15 +10,15 @@ const {test, expect } = require('@playwright/test');
     await page.goto('https://www.sky.com/');
 
     //Locate the cookies pop up iFrame and click the agree button
-    const locator = page.frameLocator('#sp_message_iframe_474555').locator('text=Agree');
-    await locator.click();
+    const cookiePop = page.frameLocator('#sp_message_iframe_474555').locator('text=Agree');
+    await cookiePop.click();
 
     //Click the search glass
-    await page.locator("xpath=//button[@id='masthead-search-toggle']").click();
+    await page.locator('data-test-id=masthead-search-toggle-button').click();
 
     //Fill the input box in search and fill
-    await page.locator("xpath=//input[@type='search']").fill('Glass');
-    await page.locator("xpath=//button[@data-test-id='submit-button']").click();
+    await page.locator('data-test-id=input-box').fill('Glass');
+    await page.locator('data-test-id=submit-button').click();
 
     //Confirm the page loads correctly
     const searchResult = page.locator('.c-editorial-layer__title');
